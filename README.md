@@ -53,6 +53,64 @@ sudo apt install sox libsox-fmt-mp3
 sox --type wav --channels 1 lorem.wav --type mp3 lorem.mp3
 ```
 
+# TODO
+
+* Tableau comparatif
+* Liste de critères
+
+## TORTOISE TTS
+
+* https://github.com/neonbjb/tortoise-tts
+
+```bash
+pip install tortoise-tts
+tortoise_tts.py --help
+```
+
+## BARK
+
+* TODO: fichiers longs et CLI
+
+```bash
+pip install git+https://github.com/suno-ai/bark.git
+python3 -m bark --text "Hello, my name is Suno." --output_filename "example.wav"
+```
+
+```python
+from bark import preload_models generate_audio SAMPLE_RATE
+from scipy.io.wavfile import write as write_wav
+preload_models()                                             # download and load all models
+f = open("lorem-ipsum.txt", "r")                             # generate audio from text
+audio_array = generate_audio(f.read())
+write_wav("bark_generation.wav", SAMPLE_RATE, audio_array)   # save audio to disk
+```
+
+* Le nom de fichier ne doit pas être `bark.py`
+* Supporte les langues étrangères et les instructions comme [laughs] [sighs] [music] [gasps]
+
+## TERMUX-TTS-SPEAK
+
+Sur Termux:
+
+```bash
+pkg install termux-tts-speak
+termux-tts-speak "Faites demi-tour dès que possible !"
+```
+
+* Enregistrement du son interne avec pyaudio
+
+```bash
+pkg install python3 wget
+python -m pip install -U pip
+wget https://its-pointless.github.io/setup-pointless-repo.sh
+bash setup-pointless-repo.sh
+rm setup-pointless-repo.sh
+pkg install portaudio portaudio-dev
+python -m pip install pyaudio
+```
+
+* A voir comment enregistrer le son interne avec pyaudio
+
 # Autres divers
 
 ## Liens utiles
